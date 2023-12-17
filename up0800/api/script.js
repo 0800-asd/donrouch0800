@@ -8,7 +8,7 @@ function uploadFile() {
       return;
     }
   
-    const apiUrl = 'https://api.github.com/repos/0800-asd/donrouch0800/contents/uploads/' + file.name;
+    const apiUrl = 'https://api.github.com/repos/0800-asd/732628040/contents/uploads/' + file.name;
   
     const reader = new FileReader();
     reader.onload = function (event) {
