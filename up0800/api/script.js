@@ -10,48 +10,60 @@ function uploadFile() {
 
     const apiUrl = 'https://api.github.com/repos/0800-asd/732628040/contents/uploads/' + file.name;
 
-    // Enlace al archivo que contiene la clave de acceso en Pastebin
-    const pastebinLink = 'https://pastebin.com/raw/cMz5yfYH';
+    // Lee la primera parte de la clave de acceso desde el archivo 1.txt
+    const part1 = readFromFile('1.txt');
 
-    // Lee la clave de acceso desde Pastebin
-    fetch(pastebinLink)
-        .then(response => response.text())
-        .then(githubToken => {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                const content = event.target.result.split(',')[1];
-                const formData = new FormData();
+    // Lee la segunda parte de la clave de acceso desde el archivo 2.txt
+    const part2 = readFromFile('2.txt');
 
-                formData.append('file', file);
+    // Combina las partes para obtener la clave de acceso completa
+    const githubToken = `${part1}${part2}`;
 
-                fetch(apiUrl, {
-                    method: 'PUT',
-                    headers: {
-                        Authorization: `Bearer ${githubToken.trim()}`,
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        message: 'Subir archivo ' + file.name,
-                        content: content,
-                        branch: 'main',
-                    }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    const fileUrl = data.content.download_url;
-                    const resultElement = document.getElementById('result');
-                    resultElement.innerHTML = `Archivo subido exitosamente. Descarga desde: <a href="${fileUrl}" target="_blank">${fileUrl}</a>`;
-                })
-                .catch(error => {
-                    console.error('Error al subir el archivo:', error);
-                    alert('Ocurrió un error al subir el archivo.');
-                });
-            };
+    const reader = new FileReader();
+    reader.onload = function (event) {
+        const content = event.target.result.split(',')[1];
+        const formData = new FormData();
 
-            reader.readAsDataURL(file);
+        formData.append('file', file);
+
+        fetch(apiUrl, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${githubToken.trim()}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                message: 'Subir archivo ' + file.name,
+                content: content,
+                branch: 'main',
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            const fileUrl = data.content.download_url;
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = `Archivo subido exitosamente. Descarga desde: <a href="${fileUrl}" target="_blank">${fileUrl}</a>`;
         })
         .catch(error => {
-            console.error('Error al obtener la clave de acceso desde Pastebin:', error);
-            alert('Ocurrió un error al obtener la clave de acceso.');
+            console.error('Error al subir el archivo:', error);
+            alert('Ocurrió un error al subir el archivo.');
         });
+    };
+
+    reader.readAsDataURL(file);
+}
+
+// Función para leer el contenido desde un archivo
+function readFromFile(filePath) {
+    const fs = require('fs');
+
+    try {
+        // Lee el contenido desde el archivo
+        const content = fs.readFileSync(filePath, 'utf-8').trim();
+        return content;
+    } catch (error) {
+        console.error(`Error al leer desde ${filePath}:`, error);
+        alert(`Ocurrió un error al leer desde ${filePath}.`);
+        return '';
+    }
 }
