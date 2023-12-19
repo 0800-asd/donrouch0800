@@ -20,7 +20,7 @@ function uploadFile() {
       fetch(apiUrl, {
         method: 'PUT',
         headers: {
-          Authorization: 'Bearer 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',
+          Authorization: 'Bearer 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',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
