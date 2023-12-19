@@ -19,7 +19,7 @@ function uploadFile() {
         fetch(apiUrl, {
             method: 'PUT',
             headers: {
-                Authorization: 'Bearer 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',
+                Authorization: 'Bearer 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',
                 'Content-Type': 'application/vnd.github.v3+json', // Cambio aquí
             },
             body: JSON.stringify({
