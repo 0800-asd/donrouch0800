@@ -1,26 +1,26 @@
 function uploadFile() {
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
-  
+
     if (!file) {
         alert('Selecciona un archivo antes de subir.');
         return;
     }
-  
+
     const apiUrl = 'https://api.github.com/repos/0800-asd/732628040/contents/uploads/' + file.name;
-  
+
     const reader = new FileReader();
     reader.onload = function (event) {
         const content = event.target.result.split(',')[1];
         const formData = new FormData();
-  
+
         formData.append('file', file);
-  
+
         fetch(apiUrl, {
             method: 'PUT',
             headers: {
                 Authorization: 'Bearer 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',
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/vnd.github.v3+json', // Cambio aquí
             },
             body: JSON.stringify({
                 message: 'Subir archivo ' + file.name,
@@ -46,6 +46,6 @@ function uploadFile() {
             alert('Ocurrió un error al subir el archivo.');
         });
     };
-  
+
     reader.readAsDataURL(file);
 }
