@@ -11,10 +11,10 @@ function uploadFile() {
     const apiUrl = 'https://api.github.com/repos/0800-asd/732628040/contents/uploads/' + file.name;
 
     // Lee la primera parte de la clave de acceso desde el archivo 1.txt
-    const part1 = readFromFile('1.txt');
+    const part1 = readFromFile('./1.txt');
 
     // Lee la segunda parte de la clave de acceso desde el archivo 2.txt
-    const part2 = readFromFile('2.txt');
+    const part2 = readFromFile('./2.txt');
 
     // Combina las partes para obtener la clave de acceso completa
     const githubToken = `${part1}${part2}`;
