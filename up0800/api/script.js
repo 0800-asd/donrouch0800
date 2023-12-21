@@ -8,7 +8,7 @@ function uploadFile() {
         return;
     }
 
-    const apiUrl = 'https://api.github.com/repos/0800-asd/732628040/contents/uploads/' + file.name;
+    const apiUrl = 'https://api.github.com/repos/0800-asd/donrouch0800/contents/uploads' + file.name;
 
     // Rutas a los archivos que contienen las partes de la clave de acceso
     const part1Path = '1.txt';
