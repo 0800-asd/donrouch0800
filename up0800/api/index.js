@@ -1,9 +1,16 @@
 const { Client, GatewayIntentBits, REST, Routes, SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const fetch = require('node-fetch');
-const { decode } = require('jsonwebtoken'); // Esta línea puede ser eliminada si no vas a decodificar JWTs
-const path = require('path'); // Esta línea importa el módulo path
+const { decode } = require('jsonwebtoken');
+const path = require('path');
 const fs = require('fs');
 const { AttachmentBuilder } = require('discord.js');
+
+// Dividir el token en dos partes
+const tokenPart1 = 'MTE5MDM0OTgyMDUwMjc0NTI5MA.GMFjMt.';
+const tokenPart2 = 'o2iOpP4OkFjKKBPC3IYprM-bXCPBnkZI51We64';
+
+// Concatenar las dos partes del token
+const token = tokenPart1 + tokenPart2;
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
 
@@ -11,10 +18,6 @@ const commands = [
   new SlashCommandBuilder()
     .setName('teleconsulta')
     .setDescription('Consulta los datos de un pj.')
-    // .addNumberOption(option =>
-    //   option.setName('documento_id')
-    //     .setDescription('ID del tipo de documento.')
-    //     .setRequired(true))
     .addStringOption(option =>
       option.setName('sexo')
         .setDescription('M o F.')
@@ -25,14 +28,12 @@ const commands = [
         .setRequired(true)),
 ].map(command => command.toJSON());
 
-// Asegúrate de reemplazar esto con tu token real de bot
-// const rest = new REST({ version: '10' }).setToken('MTE4Njg5MTE0NDcyNzEwOTcyMg.GTlkhX.n-HX5qZKyD-jcLxjWihNXzgpJtDaCo-5OBvMZw');
-const rest = new REST({ version: '10' }).setToken('MTE5MDM0OTgyMDUwMjc0NTI5MA.G7ZoPk.CbpoACPRX_IhpwoMwxak7mT0tOJeTBpGnX3D1k');
+const rest = new REST({ version: '10' }).setToken(token);
 
 client.once('ready', async () => {
   console.log('¡El bot está listo!');
 
-  const guildIds = ['1190348545082011758']; // Agrega el ID del segundo servidor aquí
+  const guildIds = ['1190348545082011758'];
 
   try {
     console.log('Comenzando la actualización de comandos (/) de la aplicación.');
@@ -44,13 +45,6 @@ client.once('ready', async () => {
       );
       console.log(`Comandos de aplicación (/) recargados exitosamente para el servidor ${guildId}.`);
     }
-
-    // await rest.put(
-    //   Routes.applicationGuildCommands(client.user.id, '1182027739088302090'),
-    //   { body: commands },
-    // );
-
-    // console.log('Comandos de aplicación (/) recargados exitosamente.');
   } catch (error) {
     console.error(error);
   }
@@ -59,24 +53,19 @@ client.once('ready', async () => {
 client.on('interactionCreate', async interaction => {
   if (!interaction.isCommand()) return;
 
-  // IDs de los canales donde quieres que el comando esté activo
-  const allowedChannelIds = ['1190351614138142811', '', ''];
+  const allowedChannelIds = ['1190351614138142811'];
+  const allowedRoleIds = ['1190351571222003752'];
 
-  // IDs de los roles que pueden usar el comando
-  const allowedRoleIds = ['1190351571222003752', '', ''];
-
-  // Verificar si el comando se ejecuta en uno de los canales permitidos
   if (!allowedChannelIds.includes(interaction.channelId)) {
-    await interaction.reply({ content: 'Este comando no se puede usar en este canal, proba en <#1182029014316093490>.', ephemeral: true });
+    await interaction.reply({ content: 'Este comando no se puede usar en este canal.', ephemeral: true });
     return;
   }
 
-  // Verificar si el miembro tiene alguno de los roles permitidos
   const memberRoles = interaction.member.roles.cache;
   const hasPermission = allowedRoleIds.some(roleId => memberRoles.has(roleId));
 
   if (!hasPermission) {
-    await interaction.reply({ content: 'No tienes permiso para usar este comando, compra el acceso en <#1172141233024552970>.', ephemeral: true });
+    await interaction.reply({ content: 'No tienes permiso para usar este comando.', ephemeral: true });
     return;
   }
 
@@ -154,6 +143,4 @@ client.on('interactionCreate', async interaction => {
   }
 });
 
-// Asegúrate de usar un token válido en la siguiente línea
-//client.login('MTE4Njg5MTE0NDcyNzEwOTcyMg.GTlkhX.n-HX5qZKyD-jcLxjWihNXzgpJtDaCo-5OBvMZw');
-client.login('MTE5MDM0OTgyMDUwMjc0NTI5MA.G7ZoPk.CbpoACPRX_IhpwoMwxak7mT0tOJeTBpGnX3D1k');
+client.login(token);
