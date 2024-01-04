@@ -35,13 +35,13 @@ body {
 .section-title {
     color: #8c9cfc;
     text-align: center;
-    margin-bottom: 1px; /* Ajusta este valor según lo que prefieras */
+    margin-bottom: 1px;
 }
 
 .section-description {
     text-align: center;
     color: #ffffff;
-    margin-bottom: 1px; /* Ajusta este valor según lo que prefieras */
+    margin-bottom: 1px;
 }
 
 
@@ -54,13 +54,13 @@ body {
 
 #skills .container {
     text-align: center;
-    max-width: 800px; /* Ajusta el ancho según tus necesidades */
+    max-width: 800px;
     margin: auto;
 }
 
 #skills .section-title {
     color: #8c9cfc;
-    margin-bottom: 15px; /* Ajusta este valor según lo que prefieras */
+    margin-bottom: 15px;
 }
 
 .skills-list {
@@ -73,10 +73,10 @@ body {
     text-align: center;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around; /* Cambiado de space-between a space-around */
+    justify-content: space-around;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(140, 156, 252, 0.3);
-    margin-top: 50px; /* Puedes ajustar este valor según lo que prefieras */
+    margin-top: 50px;
 }
 
 .project-item {
@@ -84,7 +84,6 @@ body {
     flex-direction: column;
     align-items: center;
 }
-
 
 .project-img {
     max-width: 50%;
@@ -98,7 +97,7 @@ body {
 .project-description {
     text-align: center;
     color: #ffffff;
-    margin-left: 45px; /* Ajusta este valor según lo que prefieras */
+    margin-left: 45px;
 }
 
 
@@ -108,11 +107,11 @@ body {
 
 .certification-img:hover,
 .project-img:hover {
-    transform: scale(1.1); /* Ajusta este valor según lo que prefieras */
+    transform: scale(1.1);
 }
 
 .certification-img {
-    width: 45%; /* Cambiado de 48% a 45% para dejar espacio */
+    width: 45%; /* 48 */
     margin: 1%;
     max-width: 100%;
     height: auto;
@@ -127,7 +126,6 @@ body {
     }
 }
 
-/* Nueva regla para limitar a dos certificados por fila */
 .certification-img:nth-child(odd) {
     margin-right: 0;
 }
