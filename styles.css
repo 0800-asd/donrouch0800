@@ -1,0 +1,148 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1c1c1c;
+    color: #fff;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.hero {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.hero-title {
+    margin: 0;
+    font-size: 3em;
+}
+
+.hero-subtitle {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.section {
+    padding: 60px 0;
+}
+
+.section-title {
+    color: #8c9cfc;
+    text-align: center;
+    margin-bottom: 1px; /* Ajusta este valor según lo que prefieras */
+}
+
+.section-description {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 1px; /* Ajusta este valor según lo que prefieras */
+}
+
+
+#skills {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: -50vh;
+}
+
+#skills .container {
+    text-align: center;
+    max-width: 800px; /* Ajusta el ancho según tus necesidades */
+    margin: auto;
+}
+
+#skills .section-title {
+    color: #8c9cfc;
+    margin-bottom: 15px; /* Ajusta este valor según lo que prefieras */
+}
+
+.skills-list {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+.certification-container {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Cambiado de space-between a space-around */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(140, 156, 252, 0.3);
+    margin-top: 50px; /* Puedes ajustar este valor según lo que prefieras */
+}
+
+.project-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.project-img {
+    max-width: 50%;
+    height: auto;
+    margin: 20px auto;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(140, 156, 252, 0.3);
+}
+
+.project-description {
+    text-align: center;
+    color: #ffffff;
+    margin-left: 45px; /* Ajusta este valor según lo que prefieras */
+}
+
+
+.certification-img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.certification-img:hover,
+.project-img:hover {
+    transform: scale(1.1); /* Ajusta este valor según lo que prefieras */
+}
+
+.certification-img {
+    width: 45%; /* Cambiado de 48% a 45% para dejar espacio */
+    margin: 1%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    .certification-img {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+/* Nueva regla para limitar a dos certificados por fila */
+.certification-img:nth-child(odd) {
+    margin-right: 0;
+}
+
+.certification-img:nth-child(even) {
+    margin-left: 0;
+}
+
+.footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-text {
+    margin: 0;
+}
