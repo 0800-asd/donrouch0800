@@ -3,6 +3,10 @@
     {
       "source": "/certified",
       "destination": "/certified.html"
+    },
+    {
+      "source": "/cedubi",
+      "destination": "/cedubi.html"
     }
   ]
 }
