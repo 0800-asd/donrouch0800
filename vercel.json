@@ -24,7 +24,8 @@
       "headers": {
         "Content-Type": "text/plain"
       },
-      "body": "Acceso denegado. No se permiten solicitudes desde wget o curl."
+      "continue": true,
+      "body": "MIUEBO NO"
     }
   ]
 }
