@@ -7,6 +7,24 @@
     {
       "source": "/cedubi",
       "destination": "/cedubi.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/block-curl-wget",
+      "has": [
+        { "type": "userAgent", "value": "curl" },
+        { "type": "userAgent", "value": "wget" }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "src": "/block-curl-wget",
+      "status": 403,
+      "headers": {
+        "Content-Type": "text/plain"
+      },
+      "body": "Acceso denegado. No se permiten solicitudes desde wget o curl."
     }
   ]
 }
