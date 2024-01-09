@@ -1,1 +1,21 @@
-HOLANDA
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>miuebo</title>
+</head>
+<body>
+  <script>
+    const isRequestFromBrowser = () => {
+      const userAgent = navigator.userAgent.toLowerCase();
+      return userAgent.includes("mozilla") && !userAgent.includes("wget") && !userAgent.includes("curl");
+    };
+    if (isRequestFromBrowser()) {
+      console.log("Solicitud desde un navegador");
+    } else {
+      console.log("Solicitud desde una herramienta como wget o curl");
+    }
+  </script>
+</body>
+</html>
